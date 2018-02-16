@@ -12,13 +12,13 @@
   <li>{{$error}}</li>
 @endforeach -->
 
-<form class="" action="/suggests" method="post">
+<form class="" action="{{ route('suggests.store') }}" method="post">
   {{ csrf_field() }}
 
-        <div class="form-group" {{ !$errors->has('name') ? 'has-error' : '' }}>
+        <div class="form-group" {{ $errors->has('name') ? 'has-error' : '' }}>
           <label for="">name</label>
           <input type="text" name="name">
-        <span class="help-block text-danger">{{$errors->first('name')}}</span>
+        <span class="help-block text-danger">{{ $errors->first('name')}}</span>
         </div>
 
         <div class="form-actions">

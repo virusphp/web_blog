@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Suggests;
+use App\Suggest;
+
 class SuggestController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class SuggestController extends Controller
      */
     public function index()
     {
-      $suggests = suggests::paginate(5);
+      $suggests = Suggest::paginate(5);
 
         return view('suggests.index',['suggests' => $suggests]);
     }
@@ -37,14 +38,9 @@ class SuggestController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-          'name' => 'required|min:5|unique:name'
-        ]);
 
-        $suggests = new suggests;
-        $suggests->name = $request->name;
-        $suggets->save();
-      
+        $suggests = Suggest::create($request->all()); 
+     	return redirect()->to('suggests'); 
     }
 
     /**
